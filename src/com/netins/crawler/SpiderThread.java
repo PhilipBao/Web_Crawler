@@ -1,9 +1,6 @@
 package com.netins.crawler;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

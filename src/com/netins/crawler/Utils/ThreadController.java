@@ -226,6 +226,8 @@ public class ThreadController {
 		for (int i = 0; i < nThreads; i++) {
 			cancelSignal = true;
 			threadPool.get(i).cancel();
+			//clear to be sure
+			tasks.clear();
 		}
 	}
 }

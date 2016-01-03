@@ -39,11 +39,9 @@ public class SpiderTest {
 		} catch (Exception e) {
 			System.err.println("An error occured: ");
 			e.printStackTrace();
-			// System.err.println(e.toString());
 		}
 		System.err.println("Usage: java PSucker <url> <filenamePrefix> [<maxLevel> [<maxDoc> [<maxThreads>]]]");
 		System.err.println("Crawls the web for jpeg pictures and mpeg, avi or wmv movies.");
 		System.err.println("-1 for either maxLevel or maxDoc means 'unlimited'.");
-        
     }
 }
