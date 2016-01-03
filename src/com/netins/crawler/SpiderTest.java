@@ -9,39 +9,29 @@ import java.net.URL;
 public class SpiderTest {
 	//Test Class
 	public static void main(String[] args){
-        //spider.search("https://twitter.com/?lang=en", "recruit");
+        //Url: "https://twitter.com/?lang=en", Search Keyword: "recruit"
         
         try {
 			int maxLevel = 3;
 			int maxThreads = 10;
-			int maxDoc = -1;
 			String searchWord = null;
-			if (args.length >= 6) {
-				maxThreads = Integer.parseInt(args[5]);
-			}
-			if (args.length >= 5) {
-				maxDoc = Integer.parseInt(args[4]);
-			}
 			if (args.length >= 4) {
-				maxLevel = Integer.parseInt(args[3]);
+				maxThreads = Integer.parseInt(args[3]);
 			}
 			if (args.length >= 3) {
-				searchWord = args[2];
+				maxLevel = Integer.parseInt(args[2]);
 			}
 			if (args.length >= 2) {
 				URLQueue queue = new URLQueue();
-				queue.setFilenamePrefix(args[1]);
-				queue.setMaxElements(maxDoc);
 				queue.push(new String(args[0]), 0);
+				searchWord = args[1];
 				new Spider((Queue) queue, maxLevel, maxThreads, searchWord);
 				return;
 			}
 		} catch (Exception e) {
-			System.err.println("An error occured: ");
 			e.printStackTrace();
 		}
-		System.err.println("Usage: java PSucker <url> <filenamePrefix> [<maxLevel> [<maxDoc> [<maxThreads>]]]");
-		System.err.println("Crawls the web for jpeg pictures and mpeg, avi or wmv movies.");
-		System.err.println("-1 for either maxLevel or maxDoc means 'unlimited'.");
+		System.err.println("Usage: java PSucker <url> <searchWord> [<maxLevel> [<maxThreads>]]");
+		System.err.println("Crawls the web searching keyword.");
     }
 }

@@ -5,6 +5,7 @@ import java.util.*;
 import com.netins.crawler.Utils.Queue;
 
 /**
+ *
  * This code is in the public domain.
  *
  * @author Andreas Hess <andreas.hess@ucd.ie>, 01/02/2003
