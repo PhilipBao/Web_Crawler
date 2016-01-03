@@ -1,30 +1,51 @@
 package com.netins.crawler;
 
-import java.util.AbstractQueue;
+import com.netins.crawler.Utils.ThreadController;
+import com.netins.crawler.SpiderThread;
+import com.netins.crawler.Utils.MessageReceiver;
+import com.netins.crawler.Utils.Queue;
+
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class Spider {
-	private final int MAX_PAGES_TO_REACH;
+public class Spider implements MessageReceiver {
+	final static int MAX_PAGES_TO_REACH = 20;
 	private final static int MAX_SIZE_OF_BLOCKING_QUEUE = 80;
 	private Set<String> pagesVisited = new HashSet<String>();
-	//private ArrayBlockingQueue<String> pagesToVisit = new LinkedList<String>();
-	//private ArrayBlockingQueue<String> pagesToVisit = new ArrayBlockingQueue<String>(/*MAX_SIZE_OF_BLOCKING_QUEUE*/Integer.MAX_VALUE);
-	private Queue<String> pagesToVisit = new LinkedList<String>();
-
-	public Spider(){
-		MAX_PAGES_TO_REACH = 10;
+	
+	static AtomicInteger counter = new AtomicInteger();
+	static String searchWord = "";
+	
+	
+	/*
+	 * public PSucker(Queue q, int maxLevel, int maxThreads)
+		throws InstantiationException, IllegalAccessException {
+		ThreadController tc = new ThreadController(PSuckerThread.class,
+												   maxThreads,
+												   maxLevel,
+												   q,
+												   0,
+												   this);
+	}
+	 */
+	
+	public Spider(Queue q, int maxLevel, int maxThreads, String searchWord)
+		throws InstantiationException, IllegalAccessException {
+		this.searchWord = searchWord;
+		ThreadController tc = new ThreadController(SpiderThread.class,
+				   maxThreads,
+				   maxLevel,
+				   q,
+				   0,
+				   this);
 	}
 	
-	public Spider(int maxPages){
-		MAX_PAGES_TO_REACH = maxPages;
-	}
 	
-	public void search(String url, String searchWord){
+	/*public void search(String url, String searchWord){
 		SpiderLeg leg = new SpiderLeg();
 		
 		while(this.pagesVisited.size() < MAX_PAGES_TO_REACH){
@@ -59,7 +80,8 @@ public class Spider {
     }
 			
 		
-
+	private Queue<String> pagesToVisit = new LinkedList<String>();
+	
 	private String nextUrl(){
 		String nextUrl;
 		do{
@@ -68,6 +90,31 @@ public class Spider {
 		
 		this.pagesVisited.add(nextUrl);
         return nextUrl;
+	}*/
+
+
+
+	@Override
+	public void receiveMessage(Object o, int threadId) {
+		// TODO Auto-generated method stub
+		System.out.println("[" + threadId + "] " + o.toString());
+	}
+
+
+
+	@Override
+	public void finished(int threadId) {
+		// TODO Auto-generated method stub
+		System.out.println("[" + threadId + "] finished");
+	}
+
+
+
+	@Override
+	public void finishedAll() {
+		// TODO Auto-generated method stub
+		// not implemented
+		return;
 	}
 	
 }
