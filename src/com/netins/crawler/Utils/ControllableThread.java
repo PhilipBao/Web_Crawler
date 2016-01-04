@@ -1,5 +1,7 @@
 package com.netins.crawler.Utils;
 
+import com.netins.crawler.Queue;
+
 /**
  * Abstract class that denotes a thread that can cooperate with a
  * ThreadController and has a Queue, a depth level and a MessageReceiver.

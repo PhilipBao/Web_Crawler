@@ -3,7 +3,6 @@ package com.netins.crawler;
 import com.netins.crawler.Utils.ThreadController;
 import com.netins.crawler.SpiderThread;
 import com.netins.crawler.Utils.MessageReceiver;
-import com.netins.crawler.Utils.Queue;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

@@ -1,10 +1,6 @@
 package com.netins.crawler;
 
 import com.netins.crawler.Spider;
-import com.netins.crawler.URLQueue;
-import com.netins.crawler.Utils.Queue;
-
-import java.net.URL;
 
 public class SpiderTest {
 	//Test Class
@@ -22,7 +18,7 @@ public class SpiderTest {
 				maxLevel = Integer.parseInt(args[2]);
 			}
 			if (args.length >= 2) {
-				URLQueue queue = new URLQueue();
+				Queue queue = new Queue();
 				queue.push(new String(args[0]), 0);
 				searchWord = args[1];
 				new Spider((Queue) queue, maxLevel, maxThreads, searchWord);

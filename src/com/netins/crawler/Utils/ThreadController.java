@@ -3,6 +3,7 @@ package com.netins.crawler.Utils;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import com.netins.crawler.Queue;
 import com.netins.crawler.Spider;
 
 /**

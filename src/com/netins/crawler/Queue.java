@@ -2,16 +2,7 @@ package com.netins.crawler;
 
 import java.util.*;
 
-import com.netins.crawler.Utils.Queue;
-
-/**
- *
- * This code is in the public domain.
- *
- * @author Andreas Hess <andreas.hess@ucd.ie>, 01/02/2003
- * 
- */
-public class URLQueue implements Queue {
+public class Queue {
 
 	LinkedList evenQueue;
 	LinkedList oddQueue;
@@ -20,32 +11,20 @@ public class URLQueue implements Queue {
 
 	int maxElements;
 
-	String filenamePrefix;
-
-	public URLQueue() {
+	public Queue() {
 		evenQueue = new LinkedList();
 		oddQueue = new LinkedList();
 		gatheredLinks = new HashSet();
 		processedLinks = new HashSet();
 		maxElements = -1;
-		filenamePrefix = "";
 	}
-
-	public URLQueue(int _maxElements, String _filenamePrefix) {
+	
+	public Queue(int maxSize) {
 		evenQueue = new LinkedList();
 		oddQueue = new LinkedList();
 		gatheredLinks = new HashSet();
 		processedLinks = new HashSet();
-		maxElements = _maxElements;
-		filenamePrefix = _filenamePrefix;
-	}
-
-	public void setFilenamePrefix(String _filenamePrefix) {
-		filenamePrefix = _filenamePrefix;
-	}
-
-	public String getFilenamePrefix() {
-		return filenamePrefix;
+		maxElements = maxSize;
 	}
 
 	public void setMaxElements(int _maxElements) {
@@ -78,8 +57,6 @@ public class URLQueue implements Queue {
 
 	public synchronized Object pop(int level) {
 		String s;
-		// try to get element from the appropriate queue
-		// is the queue is empty, return null
 		if (level % 2 == 0) {
 			if (evenQueue.size() == 0) {
 				return null;
